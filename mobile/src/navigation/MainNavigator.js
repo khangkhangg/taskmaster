@@ -14,6 +14,9 @@ import PlaceBidScreen from '../screens/PlaceBidScreen';
 import MyTasksScreen from '../screens/MyTasksScreen';
 import MyBidsScreen from '../screens/MyBidsScreen';
 import TaskBidsScreen from '../screens/TaskBidsScreen';
+import CompleteTaskScreen from '../screens/CompleteTaskScreen';
+import UserReviewsScreen from '../screens/UserReviewsScreen';
+import FileDisputeScreen from '../screens/FileDisputeScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -43,6 +46,21 @@ function HomeStack() {
         name="TaskBids"
         component={TaskBidsScreen}
         options={{ title: t('tasks.viewBids') }}
+      />
+      <Stack.Screen
+        name="UserReviews"
+        component={UserReviewsScreen}
+        options={{ title: 'Reviews & Trust Score' }}
+      />
+      <Stack.Screen
+        name="CompleteTask"
+        component={CompleteTaskScreen}
+        options={{ title: 'Complete Task' }}
+      />
+      <Stack.Screen
+        name="FileDispute"
+        component={FileDisputeScreen}
+        options={{ title: 'File a Dispute' }}
       />
     </Stack.Navigator>
   );
@@ -79,6 +97,21 @@ function TasksStack() {
         component={TaskBidsScreen}
         options={{ title: t('tasks.viewBids') }}
       />
+      <Stack.Screen
+        name="UserReviews"
+        component={UserReviewsScreen}
+        options={{ title: 'Reviews & Trust Score' }}
+      />
+      <Stack.Screen
+        name="CompleteTask"
+        component={CompleteTaskScreen}
+        options={{ title: 'Complete Task' }}
+      />
+      <Stack.Screen
+        name="FileDispute"
+        component={FileDisputeScreen}
+        options={{ title: 'File a Dispute' }}
+      />
     </Stack.Navigator>
   );
 }
@@ -109,6 +142,16 @@ function MyTasksStack() {
         component={TaskBidsScreen}
         options={{ title: t('tasks.viewBids') }}
       />
+      <Stack.Screen
+        name="CompleteTask"
+        component={CompleteTaskScreen}
+        options={{ title: 'Complete Task' }}
+      />
+      <Stack.Screen
+        name="FileDispute"
+        component={FileDisputeScreen}
+        options={{ title: 'File a Dispute' }}
+      />
     </Stack.Navigator>
   );
 }
@@ -128,6 +171,16 @@ function MyBidsStack() {
         name="TaskDetails"
         component={TaskDetailsScreen}
         options={{ title: t('tasks.taskDetails') }}
+      />
+      <Stack.Screen
+        name="UserReviews"
+        component={UserReviewsScreen}
+        options={{ title: 'Reviews & Trust Score' }}
+      />
+      <Stack.Screen
+        name="FileDispute"
+        component={FileDisputeScreen}
+        options={{ title: 'File a Dispute' }}
       />
     </Stack.Navigator>
   );

@@ -7,6 +7,8 @@ const connectDB = require('./config/database');
 const authRoutes = require('./routes/authRoutes');
 const taskRoutes = require('./routes/taskRoutes');
 const bidRoutes = require('./routes/bidRoutes');
+const reviewRoutes = require('./routes/reviewRoutes');
+const disputeRoutes = require('./routes/disputeRoutes');
 
 const app = express();
 
@@ -28,6 +30,8 @@ app.use((req, res, next) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/tasks', taskRoutes);
 app.use('/api/bids', bidRoutes);
+app.use('/api/reviews', reviewRoutes);
+app.use('/api/disputes', disputeRoutes);
 
 // Health check
 app.get('/health', (req, res) => {
@@ -47,7 +51,9 @@ app.get('/', (req, res) => {
     endpoints: {
       auth: '/api/auth',
       tasks: '/api/tasks',
-      bids: '/api/bids'
+      bids: '/api/bids',
+      reviews: '/api/reviews',
+      disputes: '/api/disputes'
     }
   });
 });

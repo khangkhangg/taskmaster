@@ -38,6 +38,21 @@ export default function TaskDetailsScreen({ route, navigation }) {
     navigation.navigate('TaskBids', { taskId: currentTask._id });
   };
 
+  const handleViewPosterReviews = () => {
+    navigation.navigate('UserReviews', {
+      userId: currentTask.poster._id,
+      userName: currentTask.poster.name,
+    });
+  };
+
+  const handleCompleteTask = () => {
+    navigation.navigate('CompleteTask', { task: currentTask });
+  };
+
+  const handleFileDispute = () => {
+    navigation.navigate('FileDispute', { task: currentTask });
+  };
+
   if (loading || !currentTask) {
     return (
       <View style={styles.loadingContainer}>
@@ -109,7 +124,10 @@ export default function TaskDetailsScreen({ route, navigation }) {
 
           <Divider style={styles.divider} />
 
-          <View style={styles.posterInfo}>
+          <View
+            style={styles.posterInfo}
+            onTouchEnd={() => !isMyTask && handleViewPosterReviews()}
+          >
             <Avatar.Text
               size={40}
               label={currentTask.poster?.name?.charAt(0) || 'U'}
@@ -124,6 +142,9 @@ export default function TaskDetailsScreen({ route, navigation }) {
                   ({currentTask.poster?.rating?.count || 0} {t('profile.reviews')})
                 </Text>
               </View>
+              {!isMyTask && currentTask.poster?.rating?.count > 0 && (
+                <Text style={styles.viewReviews}>Tap to view reviews →</Text>
+              )}
             </View>
           </View>
         </Card.Content>
@@ -132,7 +153,7 @@ export default function TaskDetailsScreen({ route, navigation }) {
       <View style={styles.actions}>
         {isMyTask ? (
           <>
-            {currentTask.bidsCount > 0 && (
+            {currentTask.bidsCount > 0 && currentTask.status === 'open' && (
               <Button
                 mode="contained"
                 onPress={handleViewBids}
@@ -152,6 +173,26 @@ export default function TaskDetailsScreen({ route, navigation }) {
                 {t('tasks.editTask')}
               </Button>
             )}
+            {currentTask.status === 'in_progress' && (
+              <>
+                <Button
+                  mode="contained"
+                  onPress={handleCompleteTask}
+                  style={styles.button}
+                  icon="check-circle"
+                >
+                  Complete & Review Task
+                </Button>
+                <Button
+                  mode="outlined"
+                  onPress={handleFileDispute}
+                  style={styles.button}
+                  icon="alert-circle"
+                >
+                  File a Dispute
+                </Button>
+              </>
+            )}
           </>
         ) : (
           <>
@@ -163,6 +204,17 @@ export default function TaskDetailsScreen({ route, navigation }) {
                 icon="gavel"
               >
                 {t('bids.placeBid')}
+              </Button>
+            )}
+            {currentTask.status === 'in_progress' &&
+             currentTask.assignedTo?._id === user?._id && (
+              <Button
+                mode="outlined"
+                onPress={handleFileDispute}
+                style={styles.button}
+                icon="alert-circle"
+              >
+                File a Dispute
               </Button>
             )}
           </>
@@ -259,6 +311,11 @@ const styles = StyleSheet.create({
   ratingCount: {
     fontSize: 12,
     color: '#666',
+  },
+  viewReviews: {
+    fontSize: 12,
+    color: '#2196F3',
+    marginTop: 4,
   },
   actions: {
     padding: 16,

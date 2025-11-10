@@ -68,4 +68,23 @@ export const bidsAPI = {
   withdrawBid: (id) => api.post(`/bids/${id}/withdraw`),
 };
 
+// Reviews API
+export const reviewsAPI = {
+  createReview: (data) => api.post('/reviews', data),
+  getUserReviews: (userId, params) => api.get(`/reviews/user/${userId}`, { params }),
+  getTaskReviews: (taskId) => api.get(`/reviews/task/${taskId}`),
+  getTrustScore: (userId) => api.get(`/reviews/trust-score/${userId}`),
+  markHelpful: (reviewId) => api.post(`/reviews/${reviewId}/helpful`),
+  respondToReview: (reviewId, data) => api.post(`/reviews/${reviewId}/respond`, data),
+};
+
+// Disputes API
+export const disputesAPI = {
+  createDispute: (data) => api.post('/disputes', data),
+  getMyDisputes: (params) => api.get('/disputes/my-disputes', { params }),
+  getDispute: (disputeId) => api.get(`/disputes/${disputeId}`),
+  addMessage: (disputeId, data) => api.post(`/disputes/${disputeId}/message`, data),
+  closeDispute: (disputeId) => api.post(`/disputes/${disputeId}/close`),
+};
+
 export default api;
