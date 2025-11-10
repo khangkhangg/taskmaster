@@ -20,7 +20,13 @@ const analyticsRoutes = require('./routes/analyticsRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const searchRoutes = require('./routes/searchRoutes');
 const uploadRoutes = require('./routes/uploadRoutes');
+const exportRoutes = require('./routes/exportRoutes');
 const { apiLimiter } = require('./middleware/rateLimiter');
+
+// Import services
+const { initializeRedis } = require('./services/cacheService');
+const { initializeFirebase } = require('./services/pushNotificationService');
+const { requestLogger, errorLogger } = require('./services/loggerService');
 
 const app = express();
 const server = http.createServer(app);
@@ -40,6 +46,10 @@ global.io = io;
 // Connect to database
 connectDB();
 
+// Initialize services
+initializeRedis().catch(err => console.error('Redis initialization failed:', err));
+initializeFirebase();
+
 // Middleware
 app.use(cors());
 app.use(express.json());
@@ -52,10 +62,7 @@ app.use('/uploads', express.static('uploads'));
 app.use('/api/', apiLimiter);
 
 // Request logging middleware
-app.use((req, res, next) => {
-  console.log(`${new Date().toISOString()} - ${req.method} ${req.path}`);
-  next();
-});
+app.use(requestLogger);
 
 // Make io available in req object
 app.use((req, res, next) => {
@@ -77,6 +84,7 @@ app.use('/api/analytics', analyticsRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/search', searchRoutes);
 app.use('/api/upload', uploadRoutes);
+app.use('/api/export', exportRoutes);
 
 // Health check
 app.get('/health', (req, res) => {
@@ -107,6 +115,7 @@ app.get('/', (req, res) => {
       admin: '/api/admin',
       search: '/api/search',
       upload: '/api/upload',
+      export: '/api/export',
       websocket: 'Socket.io enabled'
     }
   });
@@ -118,6 +127,7 @@ app.use((req, res) => {
 });
 
 // Error handler
+app.use(errorLogger);
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({
