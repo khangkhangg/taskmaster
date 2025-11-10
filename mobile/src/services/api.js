@@ -141,6 +141,30 @@ export const analyticsAPI = {
   getUserMetrics: () => api.get('/analytics/metrics'),
 };
 
+// Search API
+export const searchAPI = {
+  // Advanced search
+  searchTasks: (params) => api.get('/search/tasks', { params }),
+  searchUsers: (params) => api.get('/search/users', { params }),
+  globalSearch: (params) => api.get('/search/global', { params }),
+  getSuggestions: (params) => api.get('/search/suggestions', { params }),
+  getPopular: () => api.get('/search/popular'),
+};
+
+// Upload API
+export const uploadAPI = {
+  uploadImage: (formData) => api.post('/upload/image', formData, {
+    headers: { 'Content-Type': 'multipart/form-data' }
+  }),
+  uploadImages: (formData) => api.post('/upload/images', formData, {
+    headers: { 'Content-Type': 'multipart/form-data' }
+  }),
+  uploadDocument: (formData) => api.post('/upload/document', formData, {
+    headers: { 'Content-Type': 'multipart/form-data' }
+  }),
+  deleteFile: (filename) => api.delete(`/upload/${filename}`),
+};
+
 // Admin API
 export const adminAPI = {
   // Platform Statistics

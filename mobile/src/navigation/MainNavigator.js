@@ -28,6 +28,7 @@ import DashboardScreen from '../screens/DashboardScreen';
 import AdminDashboardScreen from '../screens/AdminDashboardScreen';
 import UserManagementScreen from '../screens/UserManagementScreen';
 import TaskModerationScreen from '../screens/TaskModerationScreen';
+import AdvancedSearchScreen from '../screens/AdvancedSearchScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -92,6 +93,11 @@ function TasksStack() {
         name="TasksList"
         component={TasksListScreen}
         options={{ title: t('tasks.allTasks') }}
+      />
+      <Stack.Screen
+        name="AdvancedSearch"
+        component={AdvancedSearchScreen}
+        options={{ title: 'Advanced Search' }}
       />
       <Stack.Screen
         name="TaskDetails"

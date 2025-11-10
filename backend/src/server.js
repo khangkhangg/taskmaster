@@ -18,6 +18,9 @@ const userRoutes = require('./routes/userRoutes');
 const paymentRoutes = require('./routes/paymentRoutes');
 const analyticsRoutes = require('./routes/analyticsRoutes');
 const adminRoutes = require('./routes/adminRoutes');
+const searchRoutes = require('./routes/searchRoutes');
+const uploadRoutes = require('./routes/uploadRoutes');
+const { apiLimiter } = require('./middleware/rateLimiter');
 
 const app = express();
 const server = http.createServer(app);
@@ -41,6 +44,12 @@ connectDB();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Serve static files (uploaded files)
+app.use('/uploads', express.static('uploads'));
+
+// Apply global rate limiting
+app.use('/api/', apiLimiter);
 
 // Request logging middleware
 app.use((req, res, next) => {
@@ -66,6 +75,8 @@ app.use('/api/users', userRoutes);
 app.use('/api/payments', paymentRoutes);
 app.use('/api/analytics', analyticsRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/search', searchRoutes);
+app.use('/api/upload', uploadRoutes);
 
 // Health check
 app.get('/health', (req, res) => {
@@ -94,6 +105,8 @@ app.get('/', (req, res) => {
       payments: '/api/payments',
       analytics: '/api/analytics',
       admin: '/api/admin',
+      search: '/api/search',
+      upload: '/api/upload',
       websocket: 'Socket.io enabled'
     }
   });
