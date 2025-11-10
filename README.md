@@ -2,15 +2,28 @@
 
 A mobile platform where anyone can list tasks and service providers can bid to complete them.
 
-## 🎯 Features (MVP - Phase 1)
+## 🎯 Features
 
-### Core Functionality
+### Phase 1 (MVP) - ✅ Complete
 - ✅ User registration and authentication
 - ✅ Multi-role support (Task Poster / Task Doer)
-- ✅ Create and browse tasks
-- ✅ Bidding system
-- ✅ User profiles with ratings
+- ✅ User profiles with ratings and stats
 - ✅ Multi-language support (Vietnamese default, English)
+- ✅ Complete backend API with all core endpoints
+
+### Phase 2 (Enhanced Core) - ✅ Complete
+- ✅ Task creation with full form (title, description, category, budget, location, deadline)
+- ✅ Browse tasks with filters (category, status, search)
+- ✅ Task details view with all information
+- ✅ Place bids on tasks with custom pricing and timeline
+- ✅ View received bids on your tasks (bidder profiles, ratings)
+- ✅ Accept bids (assigns task, updates statuses)
+- ✅ My Tasks screen (manage all posted tasks)
+- ✅ My Bids screen (track all submitted bids)
+- ✅ 5-tab navigation (Home, Tasks, My Tasks, My Bids, Profile)
+- ✅ Pull-to-refresh on all lists
+- ✅ Form validation and error handling
+- ✅ Empty states and loading indicators
 
 ## 🏗️ Tech Stack
 
@@ -93,23 +106,55 @@ npm start
 - **[Getting Started Guide](docs/GETTING_STARTED.md)** - Step-by-step setup instructions
 - **[Development Roadmap](docs/ROADMAP.md)** - Complete phased development plan
 - **[API Documentation](docs/API.md)** - Full API reference
+- **[Phase 2 Summary](docs/PHASE2_SUMMARY.md)** - Phase 2 features and implementation details
 
-## 🎯 What's Included in This MVP
+## 🎯 What's Included
 
-This prototype includes:
-- ✅ Complete backend API with authentication, tasks, and bidding
-- ✅ React Native mobile app with core screens
+This fully functional task bidding platform includes:
+
+**Backend API:**
+- ✅ Complete REST API with authentication, tasks, and bidding endpoints
+- ✅ User management with roles, ratings, and verification tracking
+- ✅ Task CRUD with filtering and status management
+- ✅ Bidding system with accept/reject functionality
+- ✅ JWT authentication and authorization
+
+**Mobile App (7+ Screens):**
+- ✅ Authentication (Login/Register)
+- ✅ Home screen with recent tasks and categories
+- ✅ Tasks list with search and filters
+- ✅ Task details view
+- ✅ Task creation form
+- ✅ Bid placement screen
+- ✅ My Tasks management
+- ✅ My Bids tracking
+- ✅ Task Bids review (for owners)
+- ✅ User profile with stats
+
+**Features:**
+- ✅ Complete task posting workflow
+- ✅ Browse and search tasks
+- ✅ Place and manage bids
+- ✅ Accept bids and assign tasks
 - ✅ Multi-language support (Vietnamese & English)
-- ✅ User profiles with ratings and stats
+- ✅ Pull-to-refresh on all lists
+- ✅ Form validation and error handling
 - ✅ Redux state management
-- ✅ Fully documented API endpoints
-- ✅ Clear development roadmap for next phases
+- ✅ Responsive navigation
 
 ## 🚦 Current Status
 
 **Phase 1 (MVP): COMPLETED** ✅
+**Phase 2 (Enhanced Core): COMPLETED** ✅
 
-Ready to start Phase 2! See the roadmap for next steps.
+The platform now supports the complete task bidding lifecycle! Users can:
+- Post tasks with full details
+- Browse and filter available tasks
+- Place competitive bids
+- Review and accept bids
+- Track all their tasks and bids
+
+**Ready for Phase 3: Payment & Trust System** 🚀
 
 ## 🔑 Environment Variables
 

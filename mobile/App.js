@@ -7,7 +7,7 @@ import { StatusBar } from 'expo-status-bar';
 import { View, ActivityIndicator, StyleSheet } from 'react-native';
 
 import store from './src/redux/store';
-import AppNavigator from './src/navigation/AppNavigator';
+import MainNavigator from './src/navigation/MainNavigator';
 import LoginScreen from './src/screens/LoginScreen';
 import { loadUser } from './src/redux/slices/authSlice';
 import './src/locales/i18n';
@@ -33,7 +33,7 @@ function AppContent() {
       <StatusBar style="auto" />
       {isAuthenticated ? (
         <NavigationContainer>
-          <AppNavigator />
+          <MainNavigator />
         </NavigationContainer>
       ) : (
         <LoginScreen />

@@ -37,7 +37,7 @@ export default function HomeScreen({ navigation }) {
         <View style={styles.taskInfo}>
           <Chip style={styles.chip}>{t(`categories.${item.category}`)}</Chip>
           <Text style={styles.budget}>
-            {item.budget.min.toLocaleString()} - {item.budget.max.toLocaleString()} {item.budget.currency}
+            {item.budget?.min.toLocaleString()} - {item.budget?.max.toLocaleString()} {item.budget?.currency}
           </Text>
         </View>
         {item.bidsCount > 0 && (
@@ -61,7 +61,10 @@ export default function HomeScreen({ navigation }) {
               key={category}
               style={styles.categoryChip}
               onPress={() =>
-                navigation.navigate('Tasks', { category })
+                navigation.getParent()?.navigate('Tasks', {
+                  screen: 'TasksList',
+                  params: { category }
+                })
               }
             >
               {t(`categories.${category}`)}
@@ -73,7 +76,7 @@ export default function HomeScreen({ navigation }) {
       <View style={styles.section}>
         <View style={styles.sectionHeader}>
           <Text style={styles.sectionTitle}>{t('home.recentTasks')}</Text>
-          <Button onPress={() => navigation.navigate('Tasks')}>
+          <Button onPress={() => navigation.getParent()?.navigate('Tasks')}>
             {t('tasks.allTasks')}
           </Button>
         </View>
