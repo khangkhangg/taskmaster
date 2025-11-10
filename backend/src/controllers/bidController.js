@@ -1,5 +1,6 @@
 const Bid = require('../models/Bid');
 const Task = require('../models/Task');
+const { notifyNewBid, notifyBidAccepted, notifyBidRejected, notifyTaskAssigned } = require('../utils/notifications');
 
 // Create a bid
 exports.createBid = async (req, res) => {
@@ -43,6 +44,9 @@ exports.createBid = async (req, res) => {
     });
 
     await bid.populate('bidder', 'name email avatar rating verification stats');
+
+    // Notify task poster about new bid
+    await notifyNewBid(task, bid, bid.bidder);
 
     res.status(201).json({
       success: true,
@@ -162,6 +166,13 @@ exports.acceptBid = async (req, res) => {
       return res.status(400).json({ error: 'Bid is not pending' });
     }
 
+    // Get other pending bids before rejecting them (for notifications)
+    const otherBids = await Bid.find({
+      task: task._id,
+      _id: { $ne: bid._id },
+      status: 'pending'
+    }).populate('bidder', 'name email');
+
     // Accept the bid
     bid.status = 'accepted';
     await bid.save();
@@ -177,6 +188,17 @@ exports.acceptBid = async (req, res) => {
       { task: task._id, _id: { $ne: bid._id }, status: 'pending' },
       { status: 'rejected' }
     );
+
+    // Notify the winning bidder
+    await notifyBidAccepted(task, bid, task.poster);
+
+    // Notify task assignment
+    await notifyTaskAssigned(task, bid.bidder, task.poster);
+
+    // Notify rejected bidders
+    for (const rejectedBid of otherBids) {
+      await notifyBidRejected(task, rejectedBid);
+    }
 
     res.json({
       success: true,

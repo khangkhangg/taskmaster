@@ -17,6 +17,9 @@ import TaskBidsScreen from '../screens/TaskBidsScreen';
 import CompleteTaskScreen from '../screens/CompleteTaskScreen';
 import UserReviewsScreen from '../screens/UserReviewsScreen';
 import FileDisputeScreen from '../screens/FileDisputeScreen';
+import ConversationsScreen from '../screens/ConversationsScreen';
+import ChatScreen from '../screens/ChatScreen';
+import NotificationsScreen from '../screens/NotificationsScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -61,6 +64,11 @@ function HomeStack() {
         name="FileDispute"
         component={FileDisputeScreen}
         options={{ title: 'File a Dispute' }}
+      />
+      <Stack.Screen
+        name="Chat"
+        component={ChatScreen}
+        options={{ title: 'Chat' }}
       />
     </Stack.Navigator>
   );
@@ -112,6 +120,11 @@ function TasksStack() {
         component={FileDisputeScreen}
         options={{ title: 'File a Dispute' }}
       />
+      <Stack.Screen
+        name="Chat"
+        component={ChatScreen}
+        options={{ title: 'Chat' }}
+      />
     </Stack.Navigator>
   );
 }
@@ -152,6 +165,11 @@ function MyTasksStack() {
         component={FileDisputeScreen}
         options={{ title: 'File a Dispute' }}
       />
+      <Stack.Screen
+        name="Chat"
+        component={ChatScreen}
+        options={{ title: 'Chat' }}
+      />
     </Stack.Navigator>
   );
 }
@@ -181,6 +199,56 @@ function MyBidsStack() {
         name="FileDispute"
         component={FileDisputeScreen}
         options={{ title: 'File a Dispute' }}
+      />
+      <Stack.Screen
+        name="Chat"
+        component={ChatScreen}
+        options={{ title: 'Chat' }}
+      />
+    </Stack.Navigator>
+  );
+}
+
+// Messages Stack
+function MessagesStack() {
+  const { t } = useTranslation();
+
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="ConversationsList"
+        component={ConversationsScreen}
+        options={{ title: 'Messages' }}
+      />
+      <Stack.Screen
+        name="Chat"
+        component={ChatScreen}
+        options={{ title: 'Chat' }}
+      />
+      <Stack.Screen
+        name="TaskDetails"
+        component={TaskDetailsScreen}
+        options={{ title: t('tasks.taskDetails') }}
+      />
+    </Stack.Navigator>
+  );
+}
+
+// Notifications Stack
+function NotificationsStack() {
+  const { t } = useTranslation();
+
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="NotificationsList"
+        component={NotificationsScreen}
+        options={{ title: 'Notifications' }}
+      />
+      <Stack.Screen
+        name="TaskDetails"
+        component={TaskDetailsScreen}
+        options={{ title: t('tasks.taskDetails') }}
       />
     </Stack.Navigator>
   );
@@ -250,6 +318,26 @@ export default function MainNavigator() {
           title: t('tabs.myBids'),
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="gavel" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Messages"
+        component={MessagesStack}
+        options={{
+          title: 'Messages',
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="message" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Notifications"
+        component={NotificationsStack}
+        options={{
+          title: 'Notifications',
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="bell" color={color} size={size} />
           ),
         }}
       />

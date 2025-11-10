@@ -1,5 +1,6 @@
 const Dispute = require('../models/Dispute');
 const Task = require('../models/Task');
+const { notifyDisputeUpdate } = require('../utils/notifications');
 
 // File a dispute
 exports.createDispute = async (req, res) => {
@@ -56,6 +57,9 @@ exports.createDispute = async (req, res) => {
       { path: 'filedBy', select: 'name email' },
       { path: 'filedAgainst', select: 'name email' }
     ]);
+
+    // Notify the person the dispute is filed against
+    await notifyDisputeUpdate(dispute, filedAgainst, 'A dispute has been filed against you');
 
     res.status(201).json({
       success: true,
@@ -158,6 +162,13 @@ exports.addDisputeMessage = async (req, res) => {
     await dispute.save();
 
     await dispute.populate('messages.sender', 'name avatar');
+
+    // Notify the other party about the new message
+    const otherParty = dispute.filedBy.toString() === req.userId.toString()
+      ? dispute.filedAgainst
+      : dispute.filedBy;
+
+    await notifyDisputeUpdate(dispute, otherParty, 'New message in your dispute');
 
     res.json({
       success: true,

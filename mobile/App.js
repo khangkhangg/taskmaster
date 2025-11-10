@@ -10,6 +10,7 @@ import store from './src/redux/store';
 import MainNavigator from './src/navigation/MainNavigator';
 import LoginScreen from './src/screens/LoginScreen';
 import { loadUser } from './src/redux/slices/authSlice';
+import socketService from './src/services/socket';
 import './src/locales/i18n';
 
 function AppContent() {
@@ -19,6 +20,20 @@ function AppContent() {
   useEffect(() => {
     dispatch(loadUser());
   }, []);
+
+  useEffect(() => {
+    // Connect socket when user is authenticated
+    if (isAuthenticated) {
+      socketService.connect();
+    } else {
+      socketService.disconnect();
+    }
+
+    // Cleanup on unmount
+    return () => {
+      socketService.disconnect();
+    };
+  }, [isAuthenticated]);
 
   if (loading) {
     return (

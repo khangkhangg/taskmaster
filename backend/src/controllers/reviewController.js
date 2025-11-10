@@ -2,6 +2,7 @@ const Review = require('../models/Review');
 const Task = require('../models/Task');
 const User = require('../models/User');
 const { calculateTrustScore } = require('../utils/trustScore');
+const { notifyNewReview } = require('../utils/notifications');
 
 // Create a review
 exports.createReview = async (req, res) => {
@@ -77,6 +78,9 @@ exports.createReview = async (req, res) => {
       { path: 'reviewee', select: 'name avatar' },
       { path: 'task', select: 'title' }
     ]);
+
+    // Notify the reviewee about the new review
+    await notifyNewReview(review, review.reviewer);
 
     res.status(201).json({
       success: true,

@@ -1,5 +1,6 @@
 const Task = require('../models/Task');
 const User = require('../models/User');
+const { notifyTaskCompleted } = require('../utils/notifications');
 
 // Create a new task
 exports.createTask = async (req, res) => {
@@ -223,6 +224,9 @@ exports.completeTask = async (req, res) => {
         assignedUser.stats.tasksCompleted += 1;
 
         await assignedUser.save();
+
+        // Notify the task doer about completion
+        await notifyTaskCompleted(task, assignedUser, task.poster);
       }
     }
 

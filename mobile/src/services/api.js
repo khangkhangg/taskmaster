@@ -87,4 +87,21 @@ export const disputesAPI = {
   closeDispute: (disputeId) => api.post(`/disputes/${disputeId}/close`),
 };
 
+// Messages API
+export const messagesAPI = {
+  sendMessage: (data) => api.post('/messages', data),
+  getTaskMessages: (taskId, params) => api.get(`/messages/task/${taskId}`, { params }),
+  getConversations: (params) => api.get('/messages/conversations', { params }),
+  markAsRead: (messageId) => api.put(`/messages/${messageId}/read`),
+};
+
+// Notifications API
+export const notificationsAPI = {
+  getNotifications: (params) => api.get('/notifications', { params }),
+  getUnreadCount: () => api.get('/notifications/unread-count'),
+  markAsRead: (notificationId) => api.put(`/notifications/${notificationId}/read`),
+  markAllAsRead: () => api.put('/notifications/mark-all-read'),
+  deleteNotification: (notificationId) => api.delete(`/notifications/${notificationId}`),
+};
+
 export default api;
