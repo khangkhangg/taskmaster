@@ -141,4 +141,44 @@ export const analyticsAPI = {
   getUserMetrics: () => api.get('/analytics/metrics'),
 };
 
+// Admin API
+export const adminAPI = {
+  // Platform Statistics
+  getStats: () => api.get('/admin/stats'),
+  getUserGrowth: (params) => api.get('/admin/stats/user-growth', { params }),
+  getRevenueTrends: (params) => api.get('/admin/stats/revenue', { params }),
+  getCategoryStats: () => api.get('/admin/stats/categories'),
+  getTopPerformers: (params) => api.get('/admin/stats/performers', { params }),
+  getActivityReport: (params) => api.get('/admin/stats/activity', { params }),
+
+  // User Management
+  getUsers: (params) => api.get('/admin/users', { params }),
+  getUserDetails: (userId) => api.get(`/admin/users/${userId}`),
+  suspendUser: (userId, data) => api.post(`/admin/users/${userId}/suspend`, data),
+  unsuspendUser: (userId) => api.post(`/admin/users/${userId}/unsuspend`),
+  verifyUser: (userId, data) => api.post(`/admin/users/${userId}/verify`, data),
+  addUserNote: (userId, data) => api.post(`/admin/users/${userId}/notes`, data),
+  promoteToAdmin: (userId) => api.post(`/admin/users/${userId}/promote`),
+  demoteAdmin: (userId) => api.post(`/admin/users/${userId}/demote`),
+  deleteUser: (userId) => api.delete(`/admin/users/${userId}`),
+
+  // Task Moderation
+  getTasks: (params) => api.get('/admin/tasks', { params }),
+  getFlaggedTasks: (params) => api.get('/admin/tasks/flagged', { params }),
+  getTaskDetails: (taskId) => api.get(`/admin/tasks/${taskId}`),
+  flagTask: (taskId, data) => api.post(`/admin/tasks/${taskId}/flag`, data),
+  unflagTask: (taskId) => api.post(`/admin/tasks/${taskId}/unflag`),
+  removeTask: (taskId, data) => api.post(`/admin/tasks/${taskId}/remove`, data),
+  addTaskNote: (taskId, data) => api.post(`/admin/tasks/${taskId}/notes`, data),
+
+  // Dispute Resolution
+  getDisputes: (params) => api.get('/admin/disputes', { params }),
+  getDisputeStats: () => api.get('/admin/disputes/stats'),
+  getDisputeDetails: (disputeId) => api.get(`/admin/disputes/${disputeId}`),
+  resolveDispute: (disputeId, data) => api.post(`/admin/disputes/${disputeId}/resolve`, data),
+  addDisputeMessage: (disputeId, data) => api.post(`/admin/disputes/${disputeId}/message`, data),
+  setDisputePriority: (disputeId, data) => api.post(`/admin/disputes/${disputeId}/priority`, data),
+  closeDispute: (disputeId, data) => api.post(`/admin/disputes/${disputeId}/close`, data),
+};
+
 export default api;

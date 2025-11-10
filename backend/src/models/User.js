@@ -28,6 +28,11 @@ const userSchema = new mongoose.Schema({
     enum: ['poster', 'doer', 'both'],
     default: 'both'
   },
+  accountType: {
+    type: String,
+    enum: ['user', 'admin', 'superadmin'],
+    default: 'user'
+  },
   avatar: {
     type: String,
     default: ''
@@ -159,7 +164,28 @@ const userSchema = new mongoose.Schema({
   isActive: {
     type: Boolean,
     default: true
-  }
+  },
+  isSuspended: {
+    type: Boolean,
+    default: false
+  },
+  suspensionReason: String,
+  suspendedUntil: Date,
+  suspendedBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  },
+  moderationNotes: [{
+    note: String,
+    addedBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now
+    }
+  }]
 }, {
   timestamps: true
 });

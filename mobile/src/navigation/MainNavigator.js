@@ -25,6 +25,9 @@ import PublicProfileScreen from '../screens/PublicProfileScreen';
 import SearchUsersScreen from '../screens/SearchUsersScreen';
 import WalletScreen from '../screens/WalletScreen';
 import DashboardScreen from '../screens/DashboardScreen';
+import AdminDashboardScreen from '../screens/AdminDashboardScreen';
+import UserManagementScreen from '../screens/UserManagementScreen';
+import TaskModerationScreen from '../screens/TaskModerationScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -304,6 +307,21 @@ function ProfileStack() {
         name="Dashboard"
         component={DashboardScreen}
         options={{ title: 'Dashboard & Analytics' }}
+      />
+      <Stack.Screen
+        name="AdminDashboard"
+        component={AdminDashboardScreen}
+        options={{ title: 'Admin Dashboard' }}
+      />
+      <Stack.Screen
+        name="UserManagement"
+        component={UserManagementScreen}
+        options={{ title: 'User Management' }}
+      />
+      <Stack.Screen
+        name="TaskModeration"
+        component={TaskModerationScreen}
+        options={{ title: 'Task Moderation' }}
       />
     </Stack.Navigator>
   );

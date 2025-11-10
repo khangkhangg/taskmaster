@@ -45,8 +45,15 @@ const transactionSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ['pending', 'held', 'released', 'refunded', 'failed'],
+    enum: ['pending', 'held', 'released', 'refunded', 'partial_refund', 'failed'],
     default: 'pending'
+  },
+  refundAmount: {
+    type: Number,
+    default: 0
+  },
+  adjustedPayeeAmount: {
+    type: Number
   },
   paymentMethod: {
     type: String,

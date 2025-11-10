@@ -41,6 +41,12 @@ export default function ProfileScreen({ navigation }) {
     navigation.navigate('Dashboard');
   };
 
+  const handleViewAdminDashboard = () => {
+    navigation.navigate('AdminDashboard');
+  };
+
+  const isAdmin = user?.accountType === 'admin' || user?.accountType === 'superadmin';
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
@@ -131,6 +137,19 @@ export default function ProfileScreen({ navigation }) {
             right={(props) => <List.Icon {...props} icon="chevron-right" />}
             onPress={handleViewDashboard}
           />
+
+          {isAdmin && (
+            <>
+              <Divider />
+              <List.Item
+                title="Admin Dashboard"
+                description="Manage platform operations"
+                left={(props) => <List.Icon {...props} icon="shield-crown" />}
+                right={(props) => <List.Icon {...props} icon="chevron-right" />}
+                onPress={handleViewAdminDashboard}
+              />
+            </>
+          )}
 
           <Divider />
 

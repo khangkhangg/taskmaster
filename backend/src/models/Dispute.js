@@ -11,7 +11,17 @@ const disputeSchema = new mongoose.Schema({
     ref: 'User',
     required: true
   },
+  complainant: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+  },
   filedAgainst: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+  },
+  defendant: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true
@@ -39,28 +49,27 @@ const disputeSchema = new mongoose.Schema({
   }],
   status: {
     type: String,
-    enum: ['open', 'under_review', 'resolved', 'closed'],
+    enum: ['open', 'in_review', 'under_review', 'resolved', 'closed'],
     default: 'open'
   },
   priority: {
     type: String,
-    enum: ['low', 'medium', 'high'],
+    enum: ['low', 'medium', 'high', 'urgent'],
     default: 'medium'
   },
-  resolution: {
-    decision: String,
-    notes: String,
-    resolvedBy: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User'
-    },
-    resolvedAt: Date,
-    refundAmount: Number,
-    action: {
-      type: String,
-      enum: ['refund_full', 'refund_partial', 'no_refund', 'reopen_task', 'other']
-    }
+  resolution: String,
+  resolvedBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
   },
+  resolvedAt: Date,
+  adminNotes: String,
+  closedBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  },
+  closedAt: Date,
+  closeReason: String,
   messages: [{
     sender: {
       type: mongoose.Schema.Types.ObjectId,
@@ -68,6 +77,7 @@ const disputeSchema = new mongoose.Schema({
     },
     message: String,
     isAdmin: Boolean,
+    isAdminMessage: Boolean,
     createdAt: {
       type: Date,
       default: Date.now

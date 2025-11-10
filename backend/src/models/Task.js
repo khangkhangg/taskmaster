@@ -101,7 +101,38 @@ const taskSchema = new mongoose.Schema({
     },
     comment: String,
     createdAt: Date
-  }
+  },
+  isActive: {
+    type: Boolean,
+    default: true
+  },
+  isFlagged: {
+    type: Boolean,
+    default: false
+  },
+  flagReason: String,
+  flaggedBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  },
+  flaggedAt: Date,
+  removalReason: String,
+  removedBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  },
+  removedAt: Date,
+  moderationNotes: [{
+    note: String,
+    addedBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now
+    }
+  }]
 }, {
   timestamps: true
 });
