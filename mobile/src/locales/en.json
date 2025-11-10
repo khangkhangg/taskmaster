@@ -1,0 +1,109 @@
+{
+  "common": {
+    "appName": "TaskMaster",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "submit": "Submit",
+    "search": "Search",
+    "filter": "Filter",
+    "done": "Done",
+    "back": "Back"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "email": "Email",
+    "password": "Password",
+    "name": "Full Name",
+    "phone": "Phone Number",
+    "forgotPassword": "Forgot Password?",
+    "dontHaveAccount": "Don't have an account?",
+    "alreadyHaveAccount": "Already have an account?",
+    "signUp": "Sign Up",
+    "signIn": "Sign In",
+    "loginSuccess": "Login successful!",
+    "registerSuccess": "Registration successful!"
+  },
+  "tabs": {
+    "home": "Home",
+    "tasks": "Tasks",
+    "myBids": "My Bids",
+    "profile": "Profile"
+  },
+  "home": {
+    "welcomeBack": "Welcome back, {{name}}!",
+    "findTasks": "Find Tasks",
+    "categories": "Categories",
+    "nearbyTasks": "Nearby Tasks",
+    "recentTasks": "Recent Tasks"
+  },
+  "tasks": {
+    "createTask": "Post a Task",
+    "myTasks": "My Tasks",
+    "allTasks": "All Tasks",
+    "title": "Title",
+    "description": "Description",
+    "category": "Category",
+    "budget": "Budget",
+    "location": "Location",
+    "deadline": "Deadline",
+    "status": "Status",
+    "bidsCount": "{{count}} bids",
+    "taskDetails": "Task Details",
+    "posted": "Posted",
+    "viewBids": "View Bids",
+    "editTask": "Edit Task"
+  },
+  "bids": {
+    "placeBid": "Place a Bid",
+    "myBids": "My Bids",
+    "amount": "Bid Amount",
+    "timeline": "Completion Timeline",
+    "message": "Message",
+    "bidSuccess": "Bid submitted successfully!",
+    "viewAllBids": "View All Bids",
+    "acceptBid": "Accept",
+    "rejectBid": "Reject",
+    "withdrawBid": "Withdraw"
+  },
+  "profile": {
+    "myProfile": "My Profile",
+    "editProfile": "Edit Profile",
+    "rating": "Rating",
+    "reviews": "{{count}} reviews",
+    "tasksPosted": "Posted",
+    "tasksCompleted": "Completed",
+    "totalEarned": "Earned",
+    "settings": "Settings",
+    "language": "Language",
+    "notifications": "Notifications",
+    "about": "About",
+    "bio": "Bio",
+    "skills": "Skills"
+  },
+  "categories": {
+    "cleaning": "Cleaning",
+    "delivery": "Delivery",
+    "handyman": "Handyman",
+    "moving": "Moving",
+    "design": "Design",
+    "programming": "Programming",
+    "writing": "Writing",
+    "photography": "Photography",
+    "tutoring": "Tutoring",
+    "other": "Other"
+  },
+  "status": {
+    "open": "Open",
+    "in_progress": "In Progress",
+    "completed": "Completed",
+    "cancelled": "Cancelled"
+  }
+}

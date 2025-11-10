@@ -1,0 +1,109 @@
+{
+  "common": {
+    "appName": "TaskMaster",
+    "loading": "Đang tải...",
+    "error": "Lỗi",
+    "success": "Thành công",
+    "cancel": "Hủy",
+    "confirm": "Xác nhận",
+    "save": "Lưu",
+    "delete": "Xóa",
+    "edit": "Chỉnh sửa",
+    "submit": "Gửi",
+    "search": "Tìm kiếm",
+    "filter": "Lọc",
+    "done": "Hoàn thành",
+    "back": "Quay lại"
+  },
+  "auth": {
+    "login": "Đăng nhập",
+    "register": "Đăng ký",
+    "logout": "Đăng xuất",
+    "email": "Email",
+    "password": "Mật khẩu",
+    "name": "Họ tên",
+    "phone": "Số điện thoại",
+    "forgotPassword": "Quên mật khẩu?",
+    "dontHaveAccount": "Chưa có tài khoản?",
+    "alreadyHaveAccount": "Đã có tài khoản?",
+    "signUp": "Tạo tài khoản",
+    "signIn": "Đăng nhập ngay",
+    "loginSuccess": "Đăng nhập thành công!",
+    "registerSuccess": "Đăng ký thành công!"
+  },
+  "tabs": {
+    "home": "Trang chủ",
+    "tasks": "Công việc",
+    "myBids": "Báo giá",
+    "profile": "Tài khoản"
+  },
+  "home": {
+    "welcomeBack": "Xin chào, {{name}}!",
+    "findTasks": "Tìm công việc",
+    "categories": "Danh mục",
+    "nearbyTasks": "Công việc gần bạn",
+    "recentTasks": "Công việc mới đăng"
+  },
+  "tasks": {
+    "createTask": "Đăng công việc",
+    "myTasks": "Công việc của tôi",
+    "allTasks": "Tất cả công việc",
+    "title": "Tiêu đề",
+    "description": "Mô tả",
+    "category": "Danh mục",
+    "budget": "Ngân sách",
+    "location": "Địa điểm",
+    "deadline": "Hạn chót",
+    "status": "Trạng thái",
+    "bidsCount": "{{count}} báo giá",
+    "taskDetails": "Chi tiết công việc",
+    "posted": "Đã đăng",
+    "viewBids": "Xem báo giá",
+    "editTask": "Sửa công việc"
+  },
+  "bids": {
+    "placeBid": "Đặt báo giá",
+    "myBids": "Báo giá của tôi",
+    "amount": "Giá đề nghị",
+    "timeline": "Thời gian hoàn thành",
+    "message": "Tin nhắn",
+    "bidSuccess": "Đã gửi báo giá thành công!",
+    "viewAllBids": "Xem tất cả báo giá",
+    "acceptBid": "Chấp nhận",
+    "rejectBid": "Từ chối",
+    "withdrawBid": "Rút lại"
+  },
+  "profile": {
+    "myProfile": "Tài khoản của tôi",
+    "editProfile": "Chỉnh sửa tài khoản",
+    "rating": "Đánh giá",
+    "reviews": "{{count}} đánh giá",
+    "tasksPosted": "Đã đăng",
+    "tasksCompleted": "Đã hoàn thành",
+    "totalEarned": "Thu nhập",
+    "settings": "Cài đặt",
+    "language": "Ngôn ngữ",
+    "notifications": "Thông báo",
+    "about": "Giới thiệu",
+    "bio": "Tiểu sử",
+    "skills": "Kỹ năng"
+  },
+  "categories": {
+    "cleaning": "Dọn dẹp",
+    "delivery": "Giao hàng",
+    "handyman": "Sửa chữa",
+    "moving": "Chuyển nhà",
+    "design": "Thiết kế",
+    "programming": "Lập trình",
+    "writing": "Viết lách",
+    "photography": "Nhiếp ảnh",
+    "tutoring": "Gia sư",
+    "other": "Khác"
+  },
+  "status": {
+    "open": "Đang mở",
+    "in_progress": "Đang thực hiện",
+    "completed": "Hoàn thành",
+    "cancelled": "Đã hủy"
+  }
+}
