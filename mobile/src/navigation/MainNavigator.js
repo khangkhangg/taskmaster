@@ -20,6 +20,9 @@ import FileDisputeScreen from '../screens/FileDisputeScreen';
 import ConversationsScreen from '../screens/ConversationsScreen';
 import ChatScreen from '../screens/ChatScreen';
 import NotificationsScreen from '../screens/NotificationsScreen';
+import SavedTasksScreen from '../screens/SavedTasksScreen';
+import PublicProfileScreen from '../screens/PublicProfileScreen';
+import SearchUsersScreen from '../screens/SearchUsersScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -264,6 +267,31 @@ function ProfileStack() {
         name="ProfileMain"
         component={ProfileScreen}
         options={{ title: t('tabs.profile') }}
+      />
+      <Stack.Screen
+        name="SavedTasks"
+        component={SavedTasksScreen}
+        options={{ title: 'Saved Tasks' }}
+      />
+      <Stack.Screen
+        name="PublicProfile"
+        component={PublicProfileScreen}
+        options={{ title: 'User Profile' }}
+      />
+      <Stack.Screen
+        name="SearchUsers"
+        component={SearchUsersScreen}
+        options={{ title: 'Search Users' }}
+      />
+      <Stack.Screen
+        name="TaskDetails"
+        component={TaskDetailsScreen}
+        options={{ title: t('tasks.taskDetails') }}
+      />
+      <Stack.Screen
+        name="UserReviews"
+        component={UserReviewsScreen}
+        options={{ title: 'Reviews & Trust Score' }}
       />
     </Stack.Navigator>
   );

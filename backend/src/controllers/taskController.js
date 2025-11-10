@@ -238,3 +238,47 @@ exports.completeTask = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+// Get recommended tasks for user
+exports.getRecommendedTasks = async (req, res) => {
+  try {
+    const user = await User.findById(req.userId);
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    const { limit = 20 } = req.query;
+
+    // Build recommendation query based on user's skills and location
+    const query = {
+      status: 'open',
+      poster: { $ne: req.userId } // Exclude own tasks
+    };
+
+    // Match tasks with user's skills
+    if (user.skills && user.skills.length > 0) {
+      query.requiredSkills = { $in: user.skills };
+    }
+
+    // Match tasks in user's city
+    if (user.location && user.location.city) {
+      query.$or = [
+        { 'location.city': user.location.city },
+        { 'location.type': 'remote' }
+      ];
+    }
+
+    const tasks = await Task.find(query)
+      .populate('poster', 'name email avatar rating')
+      .sort('-createdAt')
+      .limit(Number(limit));
+
+    res.json({
+      success: true,
+      data: tasks
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};

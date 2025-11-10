@@ -104,4 +104,21 @@ export const notificationsAPI = {
   deleteNotification: (notificationId) => api.delete(`/notifications/${notificationId}`),
 };
 
+// Users API
+export const usersAPI = {
+  getUserProfile: (userId) => api.get(`/users/${userId}`),
+  updateProfile: (data) => api.put('/users/profile', data),
+  searchUsers: (params) => api.get('/users/search', { params }),
+  followUser: (userId) => api.post(`/users/${userId}/follow`),
+  unfollowUser: (userId) => api.post(`/users/${userId}/unfollow`),
+  getFollowers: (userId) => api.get(`/users/${userId}/followers`),
+  getFollowing: (userId) => api.get(`/users/${userId}/following`),
+  saveTask: (taskId) => api.post(`/users/tasks/${taskId}/save`),
+  unsaveTask: (taskId) => api.post(`/users/tasks/${taskId}/unsave`),
+  getSavedTasks: (params) => api.get('/users/saved/tasks', { params }),
+  getRecommendedUsers: () => api.get('/users/recommended/users'),
+  getUserStats: (userId) => api.get(`/users/${userId}/stats`),
+  getRecommendedTasks: (params) => api.get('/tasks/recommended/for-me', { params }),
+};
+
 export default api;

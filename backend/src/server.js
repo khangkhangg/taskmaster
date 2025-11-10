@@ -14,6 +14,7 @@ const reviewRoutes = require('./routes/reviewRoutes');
 const disputeRoutes = require('./routes/disputeRoutes');
 const messageRoutes = require('./routes/messageRoutes');
 const notificationRoutes = require('./routes/notificationRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 const app = express();
 const server = http.createServer(app);
@@ -58,6 +59,7 @@ app.use('/api/reviews', reviewRoutes);
 app.use('/api/disputes', disputeRoutes);
 app.use('/api/messages', messageRoutes);
 app.use('/api/notifications', notificationRoutes);
+app.use('/api/users', userRoutes);
 
 // Health check
 app.get('/health', (req, res) => {
@@ -82,6 +84,7 @@ app.get('/', (req, res) => {
       disputes: '/api/disputes',
       messages: '/api/messages',
       notifications: '/api/notifications',
+      users: '/api/users',
       websocket: 'Socket.io enabled'
     }
   });

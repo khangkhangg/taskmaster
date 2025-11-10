@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { logout } from '../redux/slices/authSlice';
 import { saveLanguage } from '../locales/i18n';
 
-export default function ProfileScreen() {
+export default function ProfileScreen({ navigation }) {
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
@@ -19,6 +19,18 @@ export default function ProfileScreen() {
     const newLang = i18n.language === 'vi' ? 'en' : 'vi';
     await i18n.changeLanguage(newLang);
     await saveLanguage(newLang);
+  };
+
+  const handleViewPublicProfile = () => {
+    navigation.navigate('PublicProfile', { userId: user._id });
+  };
+
+  const handleViewSavedTasks = () => {
+    navigation.navigate('SavedTasks');
+  };
+
+  const handleSearchUsers = () => {
+    navigation.navigate('SearchUsers');
   };
 
   return (
@@ -34,14 +46,26 @@ export default function ProfileScreen() {
             <Text style={styles.statLabel}>{t('profile.rating')}</Text>
           </View>
           <View style={styles.statItem}>
-            <Text style={styles.statValue}>{user?.stats?.tasksPosted || 0}</Text>
-            <Text style={styles.statLabel}>{t('profile.tasksPosted')}</Text>
+            <Text style={styles.statValue}>{user?.stats?.followersCount || 0}</Text>
+            <Text style={styles.statLabel}>Followers</Text>
+          </View>
+          <View style={styles.statItem}>
+            <Text style={styles.statValue}>{user?.stats?.followingCount || 0}</Text>
+            <Text style={styles.statLabel}>Following</Text>
           </View>
           <View style={styles.statItem}>
             <Text style={styles.statValue}>{user?.stats?.tasksCompleted || 0}</Text>
             <Text style={styles.statLabel}>{t('profile.tasksCompleted')}</Text>
           </View>
         </View>
+
+        <Button
+          mode="outlined"
+          onPress={handleViewPublicProfile}
+          style={styles.profileButton}
+        >
+          View Public Profile
+        </Button>
       </View>
 
       <View style={styles.content}>
@@ -68,10 +92,20 @@ export default function ProfileScreen() {
             right={(props) => <List.Icon {...props} icon="chevron-right" />}
           />
 
+          <Divider />
+
           <List.Item
-            title={t('profile.notifications')}
-            left={(props) => <List.Icon {...props} icon="bell" />}
+            title="Saved Tasks"
+            left={(props) => <List.Icon {...props} icon="bookmark" />}
             right={(props) => <List.Icon {...props} icon="chevron-right" />}
+            onPress={handleViewSavedTasks}
+          />
+
+          <List.Item
+            title="Search Users"
+            left={(props) => <List.Icon {...props} icon="account-search" />}
+            right={(props) => <List.Icon {...props} icon="chevron-right" />}
+            onPress={handleSearchUsers}
           />
 
           <Divider />
@@ -112,6 +146,9 @@ const styles = StyleSheet.create({
   },
   email: {
     color: '#666',
+  },
+  profileButton: {
+    marginTop: 16,
   },
   stats: {
     flexDirection: 'row',

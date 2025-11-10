@@ -39,6 +39,30 @@ const userSchema = new mongoose.Schema({
   skills: [{
     type: String
   }],
+  expertise: {
+    type: String,
+    maxlength: 100
+  },
+  hourlyRate: {
+    amount: Number,
+    currency: {
+      type: String,
+      default: 'VND'
+    }
+  },
+  portfolio: [{
+    title: String,
+    description: String,
+    images: [String],
+    url: String,
+    completedAt: Date
+  }],
+  socialLinks: {
+    facebook: String,
+    linkedin: String,
+    twitter: String,
+    website: String
+  },
   location: {
     address: String,
     city: String,
@@ -48,6 +72,27 @@ const userSchema = new mongoose.Schema({
       lng: Number
     }
   },
+  savedTasks: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Task'
+  }],
+  following: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }],
+  followers: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }],
+  badges: [{
+    name: String,
+    icon: String,
+    description: String,
+    earnedAt: {
+      type: Date,
+      default: Date.now
+    }
+  }],
   rating: {
     average: {
       type: Number,
@@ -85,6 +130,24 @@ const userSchema = new mongoose.Schema({
     },
     totalEarned: {
       type: Number,
+      default: 0
+    },
+    followersCount: {
+      type: Number,
+      default: 0
+    },
+    followingCount: {
+      type: Number,
+      default: 0
+    },
+    responseRate: {
+      type: Number,
+      default: 100,
+      min: 0,
+      max: 100
+    },
+    responseTime: {
+      type: Number, // in minutes
       default: 0
     }
   },
