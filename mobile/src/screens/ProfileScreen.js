@@ -33,6 +33,14 @@ export default function ProfileScreen({ navigation }) {
     navigation.navigate('SearchUsers');
   };
 
+  const handleViewWallet = () => {
+    navigation.navigate('Wallet');
+  };
+
+  const handleViewDashboard = () => {
+    navigation.navigate('Dashboard');
+  };
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
@@ -106,6 +114,22 @@ export default function ProfileScreen({ navigation }) {
             left={(props) => <List.Icon {...props} icon="account-search" />}
             right={(props) => <List.Icon {...props} icon="chevron-right" />}
             onPress={handleSearchUsers}
+          />
+
+          <Divider />
+
+          <List.Item
+            title="Wallet & Transactions"
+            left={(props) => <List.Icon {...props} icon="wallet" />}
+            right={(props) => <List.Icon {...props} icon="chevron-right" />}
+            onPress={handleViewWallet}
+          />
+
+          <List.Item
+            title="Dashboard & Analytics"
+            left={(props) => <List.Icon {...props} icon="chart-line" />}
+            right={(props) => <List.Icon {...props} icon="chevron-right" />}
+            onPress={handleViewDashboard}
           />
 
           <Divider />

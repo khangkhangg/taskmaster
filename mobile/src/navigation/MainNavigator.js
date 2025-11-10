@@ -23,6 +23,8 @@ import NotificationsScreen from '../screens/NotificationsScreen';
 import SavedTasksScreen from '../screens/SavedTasksScreen';
 import PublicProfileScreen from '../screens/PublicProfileScreen';
 import SearchUsersScreen from '../screens/SearchUsersScreen';
+import WalletScreen from '../screens/WalletScreen';
+import DashboardScreen from '../screens/DashboardScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -292,6 +294,16 @@ function ProfileStack() {
         name="UserReviews"
         component={UserReviewsScreen}
         options={{ title: 'Reviews & Trust Score' }}
+      />
+      <Stack.Screen
+        name="Wallet"
+        component={WalletScreen}
+        options={{ title: 'Wallet & Transactions' }}
+      />
+      <Stack.Screen
+        name="Dashboard"
+        component={DashboardScreen}
+        options={{ title: 'Dashboard & Analytics' }}
       />
     </Stack.Navigator>
   );

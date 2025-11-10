@@ -15,6 +15,8 @@ const disputeRoutes = require('./routes/disputeRoutes');
 const messageRoutes = require('./routes/messageRoutes');
 const notificationRoutes = require('./routes/notificationRoutes');
 const userRoutes = require('./routes/userRoutes');
+const paymentRoutes = require('./routes/paymentRoutes');
+const analyticsRoutes = require('./routes/analyticsRoutes');
 
 const app = express();
 const server = http.createServer(app);
@@ -60,6 +62,8 @@ app.use('/api/disputes', disputeRoutes);
 app.use('/api/messages', messageRoutes);
 app.use('/api/notifications', notificationRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/payments', paymentRoutes);
+app.use('/api/analytics', analyticsRoutes);
 
 // Health check
 app.get('/health', (req, res) => {
@@ -85,6 +89,8 @@ app.get('/', (req, res) => {
       messages: '/api/messages',
       notifications: '/api/notifications',
       users: '/api/users',
+      payments: '/api/payments',
+      analytics: '/api/analytics',
       websocket: 'Socket.io enabled'
     }
   });

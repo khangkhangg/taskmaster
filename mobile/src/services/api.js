@@ -121,4 +121,24 @@ export const usersAPI = {
   getRecommendedTasks: (params) => api.get('/tasks/recommended/for-me', { params }),
 };
 
+// Payments API
+export const paymentsAPI = {
+  createEscrow: (data) => api.post('/payments/escrow', data),
+  confirmEscrow: (transactionId) => api.post(`/payments/${transactionId}/confirm`),
+  releasePayment: (transactionId) => api.post(`/payments/${transactionId}/release`),
+  refundPayment: (transactionId, data) => api.post(`/payments/${transactionId}/refund`, data),
+  getTransactions: (params) => api.get('/payments/transactions', { params }),
+  getTransaction: (transactionId) => api.get(`/payments/transactions/${transactionId}`),
+  getTaskTransaction: (taskId) => api.get(`/payments/task/${taskId}/transaction`),
+  getPaymentStats: () => api.get('/payments/stats'),
+};
+
+// Analytics API
+export const analyticsAPI = {
+  getDashboard: () => api.get('/analytics/dashboard'),
+  getTaskAnalytics: (taskId) => api.get(`/analytics/task/${taskId}`),
+  getMarketplaceInsights: () => api.get('/analytics/marketplace'),
+  getUserMetrics: () => api.get('/analytics/metrics'),
+};
+
 export default api;
